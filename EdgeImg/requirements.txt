@@ -1,0 +1,10 @@
+pip==20.1.1
+setuptools==47.1.0
+numpy
+scipy
+PyQt5
+keyboard
+Pillow
+scikit-image
+matplotlib
+pybind11
