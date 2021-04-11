@@ -109,8 +109,8 @@ class EdgeDetector:
                 inp[i][j] = base[i][j];
                 if img[i][j]>0:
                     inp[i][j] = 10000
-                if base[i][j]<=low:
-                    inp[i][j] = 0
+                #if base[i][j]<=low:
+                 #   inp[i][j] = 0
         res = inp
         res = cpp.enclose(inp)
         return res

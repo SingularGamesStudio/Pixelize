@@ -9,7 +9,7 @@
 using namespace std;
 
 double ang(int x) {
-    return -pow(1.0 / 110.0, ((double)x) / 40.0) * 360 +360;
+    //return -pow(1.0 / 110.0, ((double)x) / 40.0) * 360 +360;
     return 360;
 }
 
@@ -99,7 +99,7 @@ vector<int> enclose(const vector<int>& inp, int szx, int szy)
                 double cosa = ((double)((p.x - p0.x) * dir.x + (p.y - p0.y) * dir.y)) / (sqrt((double)((p.x - p0.x) * (p.x - p0.x) + (p.y - p0.y) * (p.y - p0.y))) * sqrt((double)(dir.x * dir.x + dir.y * dir.y)));
                 double alpha = acos(cosa);
                 if (sqrt((double)((p.x - p0.x) * (p.x - p0.x) + (p.y - p0.y) * (p.y - p0.y))) <= k && alpha<=ang(k)) {
-                    if (a[p.x][p.y] == 10000) {
+                    if (term[p.x][p.y]) {
                         ok = p;
                         break;
                     }
