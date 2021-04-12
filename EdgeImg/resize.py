@@ -55,6 +55,7 @@ class Resize:
             for j in range(0, m):
                 if used[i][j]==0:
                     dfs = [(i, j)]
+                    edge = []
                     sz = 0
                     cnt = 0
                     used[i][j] = 1
@@ -76,6 +77,10 @@ class Resize:
                         if y-1>=0 and used[x][y-1]==0 and img[x][y-1]>0:
                             dfs.append((x, y-1))
                             used[x][y-1] = 1
+                    if cnt>sz//2:
+                        dfs = [(i, j)]
+                     
+
     def proceed(self, img):
         res = img
         for i in range(0, self.k):
