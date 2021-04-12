@@ -11,7 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>EdgeImg</Name>
     <RootNamespace>EdgeImg</RootNamespace>
-    <InterpreterId>Global|PythonCore|3.7-32</InterpreterId>
+    <InterpreterId>Global|PythonCore|3.9</InterpreterId>
     <SuppressPackageInstallationPrompt>True</SuppressPackageInstallationPrompt>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -27,6 +27,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="EdgeImg.py" />
+    <Compile Include="resize.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="UI\first.py" />
     <Compile Include="UI\QtExp.py">
       <SubType>Code</SubType>
@@ -43,13 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.7-32" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\cpp\cpp.vcxproj">
-      <Name>cpp</Name>
-      <Project>{aa00fbb1-fd98-4b6e-886e-f65ca202c014}</Project>
-      <Private>True</Private>
-    </ProjectReference>
+    <InterpreterReference Include="Global|PythonCore|3.9" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

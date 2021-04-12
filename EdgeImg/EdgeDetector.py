@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.ndimage.filters import convolve
 from collections import deque
-import cpp
+#import cpp
 
 class EdgeDetector:
     def __init__(self, sigma = 8, blur = 3, gradKernel = [[3, 10, 3], [0, 0, 0], [-3, -10, -3]], lowP = 0.005, highP = 0.12, trash = 20):
@@ -112,7 +112,7 @@ class EdgeDetector:
                 #if base[i][j]<=low:
                  #   inp[i][j] = 0
         res = inp
-        res = cpp.enclose(inp)
+        #res = cpp.enclose(inp)
         return res
     def gaussBlur(self, img):
         gauss = self.createGaussKernel()
@@ -121,5 +121,5 @@ class EdgeDetector:
     def proceed(self, img):
         res = self.threshold(img)
         res = self.deleteTrash(res)
-        res = self.connect(res, img);
+        #res = self.connect(res, img);
         return res

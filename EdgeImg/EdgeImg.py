@@ -1,4 +1,5 @@
 from EdgeDetector import EdgeDetector as ED
+from resize import Resize
 import utils
 import numpy as np
 import keyboard
@@ -14,6 +15,7 @@ global img0
 global blured
 global res
 global parser
+global resizer
 global window
 global imgloaded
 global ac3
@@ -83,10 +85,12 @@ class Win3(QWidget, third.Ui_StartForm):
             self.Image.resize(pixmap.width(), pixmap.height())
     def calc(self):
         global parser
+        global resizer
         global res
         if self.HighVal.value()>=self.LowVal.value():
             if self.area[0]==self.area[2] or self.area[1]==self.area[3]:
                 res = parser.proceed(self.grad)
+                res = resizer.proceed(res);
                 tempimg1 = Image.fromarray(np.uint8(res))
                 self.img2 = ImageQt(tempimg1).convertToFormat(QImage.Format.Format_RGB888)
                 tempimg1.save("output.png")
@@ -192,11 +196,13 @@ def main():
     global ac3
     global window
     global parser
+    global resizer
     global img0
     ac3 = False
     keyboard.add_hotkey('Ctrl + Z', ctz)
     imgloaded = False
     parser = ED()
+    resizer = Resize()
     app = QApplication(sys.argv)
     window = App()
     window.show()
