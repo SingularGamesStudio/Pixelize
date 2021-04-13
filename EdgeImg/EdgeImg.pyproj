@@ -4,15 +4,16 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>99ba5116-3e1c-47ad-97bf-bc165c762d3f</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>EdgeImg.py</StartupFile>
+    <StartupFile>EdgeImg.pyw</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>EdgeImg</Name>
     <RootNamespace>EdgeImg</RootNamespace>
-    <InterpreterId>Global|PythonCore|3.9</InterpreterId>
+    <InterpreterId>Global|PythonCore|3.7-32</InterpreterId>
     <SuppressPackageInstallationPrompt>True</SuppressPackageInstallationPrompt>
+    <SuppressEnvironmentCreationPrompt>True</SuppressEnvironmentCreationPrompt>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -26,7 +27,7 @@
     <Compile Include="EdgeDetector.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="EdgeImg.py" />
+    <Compile Include="EdgeImg.pyw" />
     <Compile Include="resize.py">
       <SubType>Code</SubType>
     </Compile>
@@ -46,7 +47,13 @@
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.7-32" />
-    <InterpreterReference Include="Global|PythonCore|3.9" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\cpp\cpp.vcxproj">
+      <Name>cpp</Name>
+      <Project>{aa00fbb1-fd98-4b6e-886e-f65ca202c014}</Project>
+      <Private>True</Private>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

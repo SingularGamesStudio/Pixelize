@@ -43,19 +43,22 @@ vector<int> enclose(const vector<int>& inp, int szx, int szy)
         for (int j = 0; j < szy; j++) {
             if (a[i][j]==10000) {
                 pair<int, int> dir = { 0, 0 };
-                bool ok = 0;
+                int ok = 0;
                 for (int di = -1; di <= 1; di++) {
                     for (int dj = -1; dj <= 1; dj++) {
-                        if (i + di >= 0 && i + di < szx && j + dj >= 0 && j + dj < szy && !(dj == 0 && di == 0) && a[i + di][j + dj] == 10000) {
-                            if (dir == make_pair(0, 0)) {
-                                dir = { di, dj };
-                                ok = 1;
+                        if (i + di >= 0 && i + di < szx && j + dj >= 0 && j + dj < szy) {
+                            if (!(dj == 0 && di == 0) && a[i + di][j + dj] == 10000) {
+                                if (ok==0) {
+                                    dir = { di, dj };
+                                    ok = 1;
+                                }
+                                else ok = -1;
                             }
-                            else ok = 0;
                         }
+                        else ok = -1;
                     }
                 }
-                if (ok) {
+                if (ok==1) {
                     term[i][j] = 1;
                     edges.push_back({ { i, j }, dir });
                 }
