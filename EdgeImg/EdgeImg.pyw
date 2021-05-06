@@ -1,5 +1,4 @@
 from EdgeDetector import EdgeDetector as ED
-from resize import Resize
 import utils
 import numpy as np
 import keyboard
@@ -10,12 +9,13 @@ from UI import first, second, third
 from PIL import Image
 from PIL.ImageQt import ImageQt
 from PyQt5.QtCore import Qt, QPoint
+import shutil
+import subprocess
 
 global img0
 global blured
 global res
 global parser
-global resizer
 global window
 global imgloaded
 global ac3
@@ -86,12 +86,10 @@ class Win3(QWidget, third.Ui_StartForm):
             self.Image.resize(pixmap.width(), pixmap.height())
     def calc(self):
         global parser
-        global resizer
         global res
         if self.HighVal.value()>=self.LowVal.value():
             if self.area[0]==self.area[2] or self.area[1]==self.area[3]:
                 res = parser.proceed(self.grad)
-                #res = resizer.proceed(res);
                 tempimg1 = Image.fromarray(np.uint8(res))
                 self.img2 = ImageQt(tempimg1).convertToFormat(QImage.Format.Format_RGB888)
                 tempimg1.save("output.png")
@@ -106,7 +104,7 @@ class Win3(QWidget, third.Ui_StartForm):
                 now = np.rot90(now, 1)
                 np.put(res, w, now)
                 tempimg1 = Image.fromarray(np.uint8(res))
-                tempimg1.save("output.png")
+                #tempimg1.save("output.png")
                 self.img2 = ImageQt(tempimg1).convertToFormat(QImage.Format.Format_RGB888)
                 pixmap = QPixmap.fromImage(self.img2)
                 self.Image.setPixmap(pixmap)
@@ -119,6 +117,7 @@ class Win3(QWidget, third.Ui_StartForm):
         window.form_widget = Win2(window)
         window.setCentralWidget(window.form_widget)
     def next(self):
+        subprocess.call(["D:\Python\python.exe", "Neyron.py"])
         QApplication.quit()
 
 class Win2(QWidget, second.Ui_StartForm):
@@ -169,10 +168,11 @@ class Win1(QWidget, first.Ui_StartForm):
         global img0
         global parser
         global imgloaded
-        str, temp = QFileDialog.getOpenFileName(self, "Open Image", "", "*.png *.jpg");
+        str, temp = QFileDialog.getOpenFileName(self, "Open Image", "", "*.jpg");
         if str=="":
             return;
         img0 = utils.load_data(str)
+        shutil.copyfile(str, 'input.jpg')
         imgloaded = True
         tempimg1 = Image.fromarray(np.uint8(img0))
         tempimg2 = ImageQt(tempimg1)
@@ -199,13 +199,11 @@ def main():
     global ac3
     global window
     global parser
-    global resizer
     global img0
     ac3 = False
     keyboard.add_hotkey('Ctrl + Z', ctz)
     imgloaded = False
     parser = ED()
-    resizer = Resize()
     app = QApplication(sys.argv)
     window = App()
     window.show()

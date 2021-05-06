@@ -9,8 +9,8 @@
 using namespace std;
 
 double ang(int x) {
-    //return -pow(1.0 / 110.0, ((double)x) / 40.0) * 360 +360;
-    return 360;
+    return -pow(1.0 / 110.0, ((double)x) / 40.0) * 180 +180;
+    //return 360;
 }
 
 vector<int> enclose(const vector<int>& inp, int szx, int szy)
@@ -153,7 +153,7 @@ vector<int> enclose(const vector<int>& inp, int szx, int szy)
             if (ans[i][j] == 10000)
                 res[i * szy + j] = 255;
             else if (ans[i][j] == 5000)
-                res[i * szy + j] = 122;
+                res[i * szy + j] = 255;
             else res[i * szy + j] = 0;
         }
     }

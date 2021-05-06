@@ -28,9 +28,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="EdgeImg.pyw" />
-    <Compile Include="resize.py">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Neyron.py" />
     <Compile Include="UI\first.py" />
     <Compile Include="UI\QtExp.py">
       <SubType>Code</SubType>
@@ -46,6 +44,7 @@
     <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>
+    <InterpreterReference Include="Global|PythonCore|3.6" />
     <InterpreterReference Include="Global|PythonCore|3.7-32" />
   </ItemGroup>
   <ItemGroup>

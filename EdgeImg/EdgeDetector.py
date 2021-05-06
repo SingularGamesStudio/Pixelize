@@ -2,6 +2,7 @@ import numpy as np
 from scipy.ndimage.filters import convolve
 from collections import deque
 import cpp
+from PIL import Image
 class EdgeDetector:
     def __init__(self, sigma=8, blur=3, gradKernel=[[3, 10, 3], [0, 0, 0], [-3, -10, -3]], lowP=0.005, highP=0.12, trash=20):
         self.sigma = sigma
@@ -19,6 +20,7 @@ class EdgeDetector:
                 k[i][j] = (1 / (np.pi * self.sigma)) * np.exp(-((i - (int(sz)) // 2) ** 2 + (j - (int(sz)) // 2) ** 2) / self.sigma)
         return k
     def calcGradient(self, img):
+        #_img = img.copy()
         xKernel = self.gradKernel
         yKernel = np.rot90(xKernel)
         xGrad = convolve(img, xKernel)
@@ -118,6 +120,7 @@ class EdgeDetector:
         blured = convolve(img, gauss)
         return blured
     def proceed(self, img):
+        #return img
         res = self.threshold(img)
         res = self.deleteTrash(res)
         res = self.connect(res, img);
